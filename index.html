@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<header>
+    <div class="navbar navbar-dark bg-primary text-center" style="box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+        <a class="navbar-brand text-white">
+            Spoilerify
+        </a>
+    </div>
+</header>
+
+
+<main class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="card-title">Discord spoilers for mobile.</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="upbutton">Choose a file...</label>
+                        <img id="sex">
+                        <div class="form-group">
+                            <div class="input-group" id="upbutton">
+                                <input type="text" class="form-control" disabled placeholder="No File Selected" id="file">
+                                <div class="input-group-append">
+                                    <button type="button" class="browse btn btn-primary">Browse...</button>
+                                </div>
+                            </div>
+                            <input hidden type="file" name="image" id="image" class="file" accept="image/*,video/*,audio/*">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button id="submitBtn" class="btn btn-primary">Spoilerify!</button>
+                    </div>
+                </div>
+                <hr>
+                <p style="font-weight: 100;">Made with 💖 by <a style="font-weight: 400;">false#6969</a></p>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+document.getElementById('upbutton').addEventListener('click', openDialog);
+
+document.getElementById('submitBtn').addEventListener('click', spoilerify);
+
+function spoilerify() {
+    var fr = new FileReader();
+    
+    fr.onload = function () {
+        var a = document.createElement("a"); //Create <a>
+        a.href = fr.result;
+        a.download = "SPOILER_" + document.getElementById('image').files[0].name;
+        a.click();
+    }
+    
+    fr.readAsDataURL(document.getElementById('image').files[0]);
+}
+
+document.getElementById('image').onchange = function(){
+    document.getElementById('file').value = document.getElementById('image').files[0].name;
+}
+
+function openDialog() {
+    document.getElementById('image').click();
+}
+
+</script>
